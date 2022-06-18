@@ -4,151 +4,21 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="css/flappy.css">
         <title>Flappy Bird</title>
     </head>
-    <body>
-        <main>
-            <h1>Configutações do jogo</h1>
+    
+    <body class="conteudo">
+        <h1>Flappy Bird</h1>
 
-            <form>
-                <!-- nome jogador -->
-                <div>
-                    <label>Nome do jogador: </label>
-                    <input name="nomeJogador">
-                </div>
-                
-                <!-- cenário do jogo -->
-                <div class="radio-button">
-                    <h3>Cenário do jogo</h3>
+        <!-- <div class="config">
+            <img src="img/config.png">
+        </div> -->
 
-                    <div class="radio">
-                        <input type="radio" name="opcao-cena" id="diurno" value="diurno" checked/>
-                        <label for="diurno">Diurno</label>
-                    </div>
+        <div wm-flappy></div>
 
-                    <div class="radio">
-                        <input type="radio" name="opcao-cena" id="noturno" value="noturno"/>
-                        <label for="noturno">Noturno</label>
-                    </div>
-                </div>
 
-                <!-- intervalo de canos -->
-                <div class="radio-button">
-                    <h3>Intervalo entra abertura de canos</h3>
-                    
-                    <div class="radio">
-                        <input type="radio" name="opcao-nivel" id="facil" value="facil" checked/>
-                        <label for="facil">Fácil</label>
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name="opcao-nivel" id="medio" value="medio"/>
-                        <label for="medio">Médio</label>
-                    </div>
-                    
-                    <div class="radio">
-                        <input type="radio" name="opcao-nivel" id="dificil" value="dificil"/>
-                        <label for="dificil">Difícil</label>
-                    </div>
-                </div>
-
-                <!-- distância de canos -->
-                <div class="radio-button">
-                    <h3>Distância entre os canos</h3>
-                    
-                    <div class="radio">
-                        <input type="radio" name="opcao-distancia" id="facil" value="facil" checked/>
-                        <label for="facil">Fácil</label>
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name="opcao-distancia" id="medio" value="medio"/>
-                        <label for="medio">Médio</label>
-                    </div>
-                    
-                    <div class="radio">
-                        <input type="radio" name="opcao-distancia" id="dificil" value="dificil"/>
-                        <label for="dificil">Difícil</label>
-                    </div>
-                </div>
-
-                <!-- velocidade do jogo -->
-                <div class="velocidade">
-                    <h3>Velocidade do jogo</h3>
-                    
-                    <div class="slider-range">
-                        <input type="range" value="1" min="1" max="10" class="range" id="range" oninput="rangenumber.value=value" />
-                        <input type="number" value="1" id="rangenumber" min="1" max="10" oninput="range.value=value" />
-                    </div>
-                </div>
-
-                <!-- escolha de personagem -->
-                <div class="personagem">
-                    <h3>Personagem</h3>
-
-                    <select>
-                        <option value="selecionar">-- Selecionar --</option>
-                        <option value="base64">Bird Amarelo</option>
-                        <option value="cifraCesar">Bird Azul</option>
-                    </select>
-                </div>
-
-                <!-- tipo de jogo -->
-                <div class="radio-button">
-                    <h3>Tipo de jogo</h3>
-
-                    <div class="radio">
-                        <input type="radio" name="opcao-tipo" id="treino" value="treino" checked/>
-                        <label for="treino">Treino</label>
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name="opcao-tipo" id="real" value="real"/>
-                        <label for="real">Real</label>
-                    </div>
-                </div>
-
-                <!-- velocidade do personagem -->
-                <div class="radio-button">
-                    <h3>Velocidade do personagem</h3>
-                    
-                    <div class="radio">
-                        <input type="radio" name="opcao-veloPersonagem" id="facil" value="facil" checked/>
-                        <label for="facil">Fácil</label>
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name="opcao-veloPersonagem" id="medio" value="medio"/>
-                        <label for="medio">Médio</label>
-                    </div>
-                    
-                    <div class="radio">
-                        <input type="radio" name="opcao-veloPersonagem" id="dificil" value="dificil"/>
-                        <label for="dificil">Difícil</label>
-                    </div>
-                </div>
-                
-                <!-- pontuação -->
-                <div class="radio-button">
-                    <h3>Pontuação</h3>
-                    
-                    <div class="radio">
-                        <input type="radio" name="opcao-pontuacao" id="um" value="um" checked/>
-                        <label for="um">1</label>
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name="opcao-pontuacao" id="dez" value="dez"/>
-                        <label for="dez">10</label>
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name="opcao-pontuacao" id="cem" value="cem"/>
-                        <label for="cem">100</label>
-                    </div>
-                </div>
-            </form>
-
-        </main>
+        <script src="js/flappy.js"></script>
     </body>
 </html>
