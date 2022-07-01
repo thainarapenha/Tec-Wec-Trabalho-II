@@ -1,5 +1,6 @@
 const forms = document.getElementById('fomulario');
 
+// recebendo os valores dos campos do forms
 const urlParams = new URLSearchParams(window.location.search)
 const nome = urlParams.get('nome')
 const cenario = urlParams.get('opcao-cena')
@@ -11,6 +12,7 @@ const tipoJogo = urlParams.get('opcao-tipo')
 const velocidadePersonagem = urlParams.get('opcao-veloPersonagem')
 const pontuacao = urlParams.get('opcao-pontuacao')
 
+// verificando se os valores estão passando corretamente
 console.table(
     nome, 
     cenario, 
@@ -102,9 +104,7 @@ function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
 
 /* const barreiras = new Barreiras(700, 400, 200, 400)
 const areaDoJogo = document.querySelector('[wm-flappy]')
-
 barreiras.pares.forEach( par => areaDoJogo.appendChild(par.elemento)) 
-
 setInterval(() => {
     barreiras.animar()
 },20)  */
@@ -139,12 +139,9 @@ function Passaro(alturaJogo) {
 
 /* const barreiras = new Barreiras(700, 400, 200, 400)
 const passaro = new Passaro(700)
-
 const areaDoJogo = document.querySelector('[wm-flappy]')
-
 areaDoJogo.appendChild(passaro.elemento)
 barreiras.pares.forEach( par => areaDoJogo.appendChild(par.elemento)) 
-
 setInterval(() => {
       barreiras.animar()
       passaro.animar() 
@@ -162,9 +159,7 @@ function Progresso() {
 
 /*  const barreiras = new Barreiras(700, 400, 200, 400)
 const passaro = new Passaro(700)
-
 const areaDoJogo = document.querySelector('[wm-flappy]')
-
 areaDoJogo.appendChild(passaro.elemento)
 barreiras.pares.forEach( par => areaDoJogo.appendChild(par.elemento))  */
 
@@ -193,14 +188,26 @@ function colidiu(passaro, barreiras) {
     return colidiu
 }
 
-function FlappyBird() {
+function FlappyBird(
+    nome, 
+    cenario, 
+    intervaloCanos, 
+    distanciaCanos, 
+    velocidadeCanos, 
+    personagem, 
+    tipoJogo, 
+    velocidadePersonagem, 
+    pontuacao
+) {
     let pontos = 0
     const areaDoJogo = document.querySelector('[wm-flappy]')
     const altura = areaDoJogo.clientHeight
     const largura = areaDoJogo.clientWidth
 
     const progresso = new Progresso()
-    const barreiras = new Barreiras(altura, largura, 200, 400,
+
+    // definindo intervalo e distância de acordo com info do forms
+    const barreiras = new Barreiras(altura, largura, parseInt(intervaloCanos), parseInt(distanciaCanos),
         () => progresso.atualizarPontos(++pontos))
 
     const passaro = new Passaro(altura)
@@ -216,11 +223,14 @@ function FlappyBird() {
 
               if(colidiu(passaro,barreiras)){
                  clearInterval(temporizador) 
-             } 
-        }, 20)
+             }
+
+        // definindo veloc de acordo com o forms
+        }, velocidadeCanos)
     }
 }
 
+// jogo inicia com as  config pré-preenchidas do forms
 new FlappyBird(
     nome, 
     cenario, 
@@ -232,51 +242,3 @@ new FlappyBird(
     velocidadePersonagem, 
     pontuacao
 ).start();
-
-// qnd as novas config forem add, repasso parra function FlappyBird
-
-// function novasConfigs(){
-//     // const nome = document.getElementById('nomeJog');
-//     // const cenario = document.querySelectorAll('opcao-cena');
-//     // const intervaloCanos = document.querySelectorAll('opcao-nivel');
-//     // const distanciaCanos = document.querySelectorAll('opcao-distancia');
-//     // const velocidadeCanos = document.querySelectorAll('rangenumber');
-//     // const personagem = document.querySelector('.opPerson');
-//     // const tipoJogo = document.querySelectorAll('opcao-tipo');
-//     // const velocidadePersonagem = document.querySelectorAll('opcao-veloPersonagem');
-//     // const pontuacao = document.querySelectorAll('opcao-pontuacao');
-
-//     // const urlParams = new URLSearchParams(window.location.search)
-// 	// const nome = urlParams.get('nome')
-// 	// const cenario = urlParams.get('opcao-cena')
-// 	// const intervaloCanos = urlParams.get('opcao-nivel')
-// 	// const distanciaCanos = urlParams.get('opcao-distancia')
-// 	// const velocidadeCanos = urlParams.get('rangenumber')
-// 	// const personagem = urlParams.get('.opPerson')
-// 	// const tipoJogo = urlParams.get('opcao-tipo')
-// 	// const velocidadePersonagem = urlParams.get('opcao-veloPersonagem')
-// 	// const pontuacao = urlParams.get('opcao-pontuacao')
-
-//     console.log(nome, 
-//         cenario, 
-//         intervaloCanos, 
-//         distanciaCanos, 
-//         velocidadeCanos, 
-//         personagem, 
-//         tipoJogo, 
-//         velocidadePersonagem, 
-//         pontuacao);
-
-//     e.preventDefault();
-//     FlappyBird(
-//         nome, 
-//         cenario, 
-//         intervaloCanos, 
-//         distanciaCanos, 
-//         velocidadeCanos, 
-//         personagem, 
-//         tipoJogo, 
-//         velocidadePersonagem, 
-//         pontuacao
-//     ).start;
-// };
