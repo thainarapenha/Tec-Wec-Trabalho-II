@@ -16,7 +16,8 @@
 
             <section class="areaConfig">
                 <h1>Configurações do jogo</h1>
-                <form>
+
+                <form action="index.html" method="GET" id="fomulario">
                     <!-- nome jogador -->
                     <div>
                         <label><strong>Nome do jogador: </strong></label>
@@ -93,9 +94,9 @@
                         <label><strong>Personagem: </strong></label>
     
                         <select id="opPerson">
-                            <option value="selecionar">-- Selecionar --</option>
-                            <option value="base64">Bird Amarelo</option>
-                            <option value="cifraCesar">Bird Azul</option>
+                            <!-- <option value="selecionar">-- Selecionar --</option> -->
+                            <option value="birdAMARELO" selected >Bird Amarelo</option>
+                            <option value="birdAZUL">Bird Azul</option>
                         </select>
                     </div>
     
@@ -153,8 +154,12 @@
                             <label for="cem">100</label>
                         </div>
                     </div>
+
+                    <button id="btnSubmit">Salvar</button>
                 </form>
             </section>
         </main>
+        
+        <script src="js/flappy.js"></script>
     </body>
 </html>

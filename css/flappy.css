@@ -12,6 +12,10 @@
 html{
     height: 100%;
 }
+.btnConfig img{
+    width: 100%;
+    max-width: 50px;
+}
 .cabecalho{
     display: flex;
     padding-top: 20px;
@@ -72,19 +76,13 @@ html{
     flex-direction: row;
     padding: 10px 0;
 }
-
-
-
-
-
-
-
 [wm-flappy] {
     position: relative;
     border: 5px solid dodgerblue;
     height: 700px;
     width: 1200px;
     margin: 15px;
+    
     background-color: deepskyblue;
     overflow: hidden;
 }
