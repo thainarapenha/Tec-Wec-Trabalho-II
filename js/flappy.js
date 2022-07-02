@@ -28,7 +28,6 @@ console.table(
 function novoElemento(tagName, className) {
     const elemento = document.createElement(tagName)
     elemento.className = className
-    // console.log(elemento)
     return elemento
 }
 
@@ -98,9 +97,15 @@ function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
 function Passaro(alturaJogo) {
     let voando = false
 
-    this.elemento = novoElemento('img', 'passaro')
-    this.elemento.src = 'img/passaro.png'
-
+    // condicional de escolha de personagem
+    if(personagem === 'Bird Amarelo'){
+        this.elemento = novoElemento('img', 'passaro')
+        this.elemento.src = 'img/passaroAmarelo.png'
+    }else{
+        this.elemento = novoElemento('img', 'passaro')
+        this.elemento.src = 'img/passaroAzul.png'
+    }
+    
     this.getY = () => parseInt(this.elemento.style.bottom.split('px')[0])
     this.setY = y => this.elemento.style.bottom = `${y}px`
 
