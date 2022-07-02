@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flappy Bird</title>
+        <link rel="stylesheet" href="css/flappy.css">
+    </head>
+
+    <body class="conteudo">
+        <h1>Flappy Bird</h1>
+        <div wm-flappy>
+            <!-- icon de configurações do jogo -->
+            <div class="btnConfig">
+                <a href="index.html"><img src="img/config.png" alt="icone de configurações"/></a>
+            </div>
+
+            <!-- rascunho da tela de game-over -->
+            <div class="telaGame-Over" style="display: none">
+                <h1>Game Over</h1>
+                <div id="resultPontos"></div>
+                <a>Play Again</a>
+            </div>
+        </div>
+
+        <script src="js/flappy.js"></script>
+    </body>
+</html>

@@ -1,3 +1,29 @@
+// responsável por receber os valores do formulár
+const urlParams = new URLSearchParams(window.location.search);
+
+const nome = urlParams.get('nomeJogador');
+const cenario = urlParams.get('opcao-cena');
+const intervaloCanos = urlParams.get('opcao-nivel');
+const distanciaCanos = urlParams.get('opcao-distancia');
+const velocidadeCanos = urlParams.get('velocidade');
+const personagem = urlParams.get('personagens');
+const tipoJogo = urlParams.get('opcao-tipo');
+const velocidadePersonagem = urlParams.get('opcao-veloPersonagem');
+const pontuacao = urlParams.get('opcao-pontuacao');
+
+console.table(
+    "nome", nome, 
+    "cenario", cenario, 
+    "intervalo Canos", intervaloCanos, 
+    "dist canos", distanciaCanos, 
+    "valo canos", velocidadeCanos, 
+    "personagem", personagem, 
+    "tipo de jogo", tipoJogo, 
+    "veloc personagem", velocidadePersonagem, 
+    "pontuação", pontuacao
+);
+
+    
 // cria todo o cenário de barras
 function novoElemento(tagName, className) {
     const elemento = document.createElement(tagName)
@@ -177,48 +203,5 @@ function FlappyBird(
     }
 }
 
-// iniciava o jogo
+// inicia o jogo
 new FlappyBird().start();
-
-const forms = document.querySelectorAll('#formulario');
-
-// pqgo os novos valores para aplicar no jogo
-forms.addEventListener("click", function(e){
-    e.preventDefault();
-
-    const nome = querySelectorAll('#nomeJog');
-    const cenario = querySelectorAll('opcao-cena');
-    const intervaloCanos = querySelectorAll('opcao-nivel');
-    const distanciaCanos = querySelectorAll('opcao-distancia');
-    const velocidadeCanos = querySelectorAll('rangenumber');
-    const personagem = querySelectorAll('.opPerson');
-    const tipoJogo = querySelectorAll('opcao-tipo');
-    const velocidadePersonagem = querySelectorAll('opcao-veloPersonagem');
-    const pontuacao = querySelectorAll('opcao-pontuacao');
-
-    // verifico se os valores estão chegando corretamente pelo console
-    console.table(
-        "nome", nome, 
-        "cenario", cenario, 
-        "intervalo Canos", intervaloCanos, 
-        "dist canos", distanciaCanos, 
-        "valo canos", velocidadeCanos, 
-        "personagem", personagem, 
-        "tipo de jogo", tipoJogo, 
-        "veloc personagem", velocidadePersonagem, 
-        "pontuação", pontuacao
-    );
-
-    //repasso as novas configurações para o jogo
-    new FlappyBird(
-        nome, 
-        cenario, 
-        intervaloCanos, 
-        distanciaCanos, 
-        velocidadeCanos, 
-        personagem, 
-        tipoJogo, 
-        velocidadePersonagem, 
-        pontuacao
-    ).start();
-})
