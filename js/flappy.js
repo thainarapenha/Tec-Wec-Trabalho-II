@@ -5,7 +5,7 @@ const nome = urlParams.get('nomeJogador');
 const cenario = urlParams.get('opcao-cena');
 const intervaloCanos = urlParams.get('opcao-nivel');
 const distanciaCanos = urlParams.get('opcao-distancia');
-const velocidadeCanos = urlParams.get('velocidade');
+const velocidadeJogo = urlParams.get('velocidade');
 const personagem = urlParams.get('personagens');
 const tipoJogo = urlParams.get('opcao-tipo');
 const velocidadePersonagem = urlParams.get('opcao-veloPersonagem');
@@ -16,22 +16,19 @@ console.table(
     "cenario", cenario, 
     "intervalo Canos", intervaloCanos, 
     "dist canos", distanciaCanos, 
-    "valo canos", velocidadeCanos, 
+    "valo canos", velocidadeJogo, 
     "personagem", personagem, 
     "tipo de jogo", tipoJogo, 
     "veloc personagem", velocidadePersonagem, 
     "pontuação", pontuacao
 );
 
-    
-// cria todo o cenário de barras
 function novoElemento(tagName, className) {
     const elemento = document.createElement(tagName)
     elemento.className = className
     return elemento
 }
 
-// cria todo o cenário de barras
 function Barreira(reversa = false) {
     this.elemento = novoElemento('div', 'barreira')
     const borda = novoElemento('div', 'borda')
@@ -40,9 +37,15 @@ function Barreira(reversa = false) {
     this.elemento.appendChild(reversa ? borda : corpo)
 
     this.setAltura = altura => corpo.style.height = `${altura}px`
+
 }
 
-// sorteia a posição das barras
+/* const b= new Barreira(false)
+b.setAltura(500)
+document.querySelector('[wm-flappy]').appendChild(b.elemento) */  
+
+
+
 function ParDeBarreiras(altura, abertura, popsicaoNaTela) {
     this.elemento = novoElemento('div', 'par-de-barreiras')
     this.superior = new Barreira(true)
@@ -64,7 +67,10 @@ function ParDeBarreiras(altura, abertura, popsicaoNaTela) {
 
     this.sortearAbertura()
     this.setX(popsicaoNaTela)
-}
+} 
+
+/* const b= new ParDeBarreiras(500,300,1000)
+document.querySelector('[wm-flappy]').appendChild(b.elemento)  */
 
 function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
     this.pares = [
@@ -93,7 +99,16 @@ function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
     }
 }
 
-// cria a posição do pássaro
+/* const barreiras = new Barreiras(700, 400, 200, 400)
+const areaDoJogo = document.querySelector('[wm-flappy]')
+
+barreiras.pares.forEach( par => areaDoJogo.appendChild(par.elemento)) 
+
+setInterval(() => {
+    barreiras.animar()
+},20)  */
+
+
 function Passaro(alturaJogo) {
     let voando = false
 
@@ -105,7 +120,7 @@ function Passaro(alturaJogo) {
         this.elemento = novoElemento('img', 'passaro')
         this.elemento.src = 'img/passaroAzul.png'
     }
-    
+
     this.getY = () => parseInt(this.elemento.style.bottom.split('px')[0])
     this.setY = y => this.elemento.style.bottom = `${y}px`
 
@@ -127,7 +142,21 @@ function Passaro(alturaJogo) {
     this.setY(alturaJogo / 2)
 }
 
-function Progresso() {
+/* const barreiras = new Barreiras(700, 400, 200, 400)
+const passaro = new Passaro(700)
+
+const areaDoJogo = document.querySelector('[wm-flappy]')
+
+areaDoJogo.appendChild(passaro.elemento)
+barreiras.pares.forEach( par => areaDoJogo.appendChild(par.elemento)) 
+
+setInterval(() => {
+      barreiras.animar()
+      passaro.animar() 
+},20) */
+
+
+ function Progresso() {
 
     this.elemento = novoElemento('span', 'progresso')
     this.atualizarPontos = pontos => {
@@ -136,7 +165,16 @@ function Progresso() {
     this.atualizarPontos(0)
 }
 
-function estaoSobrepostos(elementoA, elementoB) {
+/*  const barreiras = new Barreiras(700, 400, 200, 400)
+const passaro = new Passaro(700)
+
+const areaDoJogo = document.querySelector('[wm-flappy]')
+
+areaDoJogo.appendChild(passaro.elemento)
+barreiras.pares.forEach( par => areaDoJogo.appendChild(par.elemento))  */
+
+
+ function estaoSobrepostos(elementoA, elementoB) {
 
     const a = elementoA.getBoundingClientRect()
     const b = elementoB.getBoundingClientRect()
@@ -153,40 +191,32 @@ function colidiu(passaro, barreiras) {
         if (!colidiu) {
             const superior = parDeBarreiras.superior.elemento
             const inferior = parDeBarreiras.inferior.elemento
-            colidiu = estaoSobrepostos(passaro.elemento, superior) || estaoSobrepostos(passaro.elemento, inferior)
+            colidiu = estaoSobrepostos(passaro.elemento, superior)
+                || estaoSobrepostos(passaro.elemento, inferior)
         }
     })
     return colidiu
+
 }
 
-function FlappyBird(
-                nome, 
-                cenario, 
-                intervaloCanos, 
-                distanciaCanos, 
-                velocidadeCanos, 
-                personagem, 
-                tipoJogo, 
-                velocidadePersonagem, 
-                pontuacao){
-
+ function FlappyBird() {
     let pontos = 0
-    // modificando cenário do jogo
-    const areaDoJogo = document.querySelector('[wm-flappy]')
-    if(cenario === 'diurno'){
-        areaDoJogo.style.backgroundColor = 'dodgerblue';
-    }else{
-        areaDoJogo.style.backgroundColor = 'gray';
-    }
 
+    // if(cenario === 'diurno'){
+    //     console.log("entrou no cenario dia")
+    //     areaDoJogo.style.backgroundColor = 'dodgerblue';
+    // }else{
+    //     console.log("entrou no cenario noite")
+    //     areaDoJogo.style.backgroundColor = 'gray';
+    // }
+
+    const areaDoJogo = document.querySelector('[wm-flappy]')
     const altura = areaDoJogo.clientHeight
     const largura = areaDoJogo.clientWidth
 
     const progresso = new Progresso()
-
-    // definindo intervalo e distância de acordo com info do forms
-    const barreiras = new Barreiras(altura, largura, parseInt(intervaloCanos), parseInt(distanciaCanos),
-        () => progresso.atualizarPontos(pontos += parseInt(pontuacao))) // ajusta o valor da pontuação no decorrer do jogo
+    const barreiras = new Barreiras(altura, largura, 200, 400,
+        () => progresso.atualizarPontos(++pontos))
 
     const passaro = new Passaro(altura)
 
@@ -201,12 +231,8 @@ function FlappyBird(
 
               if(colidiu(passaro,barreiras)){
                  clearInterval(temporizador) 
-             }
-
-        // definindo veloc de acordo com o forms
-        }, velocidadeCanos)
+             } 
+        }, 20)
     }
 }
-
-// inicia o jogo
-new FlappyBird().start();
+ new FlappyBird().start() 
