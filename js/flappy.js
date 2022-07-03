@@ -53,13 +53,13 @@ function ParDeBarreiras(altura, abertura, popsicaoNaTela) {
     this.elemento.appendChild(this.superior.elemento)
     this.elemento.appendChild(this.inferior.elemento)
 
-
     this.sortearAbertura = () => {
         const alturaSuperior = Math.random() * (altura - abertura)
         const alturaInferior = altura - abertura - alturaSuperior
         this.superior.setAltura(alturaSuperior)
         this.inferior.setAltura(alturaInferior)
     }
+
     this.getX = () => parseInt(this.elemento.style.left.split('px')[0])
     this.setX =  popsicaoNaTela => this.elemento.style.left = `${popsicaoNaTela}px`
     this.getLargura = () => this.elemento.clientWidth
@@ -139,13 +139,13 @@ function Passaro(alturaJogo) {
     this.atualizarPontos = pontos => {
         this.elemento.innerHTML = pontos
     }
+    
     this.atualizarPontos(0)
 }
 
 /*  -------------------------------------------------------------------------------------------  */
 
  function estaoSobrepostos(elementoA, elementoB) {
-
     const a = elementoA.getBoundingClientRect()
     const b = elementoB.getBoundingClientRect()
     const horizontal = a.left + a.width >= b.left && b.left + b.width >= a.left
@@ -156,22 +156,7 @@ function Passaro(alturaJogo) {
 
 /*  -------------------------------------------------------------------------------------------  */
 
-function colidiu(passaro, barreiras) {
-    let colidiu = false
-
-    barreiras.pares.forEach(parDeBarreiras => {
-        if (!colidiu) {
-            const superior = parDeBarreiras.superior.elemento
-            const inferior = parDeBarreiras.inferior.elemento
-            colidiu = estaoSobrepostos(passaro.elemento, superior) || estaoSobrepostos(passaro.elemento, inferior)
-        }
-    })
-    return colidiu
-}
-
-/*  -------------------------------------------------------------------------------------------  */
-
- function FlappyBird() {
+function FlappyBird() {
     let pontos = 0
 
     // alterando cenário do jogo
@@ -186,8 +171,28 @@ function colidiu(passaro, barreiras) {
     const largura = areaDoJogo.clientWidth
 
     const progresso = new Progresso()
+
+    // adicionando valores de intervalo e distância de forma dinâmica
     const barreiras = new Barreiras(altura, largura, parseInt(intervaloCanos), parseInt(distanciaCanos),
         () => progresso.atualizarPontos(++pontos))
+
+    function colidiu(passaro, barreiras) {
+        let colidiu = false
+    
+        barreiras.pares.forEach(parDeBarreiras => {
+            if (!colidiu) {
+                const superior = parDeBarreiras.superior.elemento
+                const inferior = parDeBarreiras.inferior.elemento
+                colidiu = estaoSobrepostos(passaro.elemento, superior) || estaoSobrepostos(passaro.elemento, inferior)
+            }else{
+                $("#GameOver").attr('style', '');
+                const resultado = document.querySelector('[resultPontos]')
+                console.log('nome: ', nome, 'pontos: ', pontos)
+                resultado.innerText = `${nome}, você finalizou com ${pontos} pontos`
+            }
+        })
+        return colidiu
+    }
 
     const passaro = new Passaro(altura)
 
@@ -206,4 +211,5 @@ function colidiu(passaro, barreiras) {
         }, velocidadeJogo)
     }
 }
- new FlappyBird().start() 
+// incicia o jogo
+new FlappyBird().start() 

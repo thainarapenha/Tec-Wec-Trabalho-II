@@ -9,29 +9,25 @@
 
 <body class="conteudo">
     <h1>Flappy Bird</h1>
-    <div wm-flappy>
-
+    <div wm-flappy id="Main">
         <!-- icon de configurações do jogo -->
-            <div class="btnConfig">
-                <a href="forms.html"><img src="img/config.png" alt="icone de configurações"/></a>
-            </div>
-
-        <!-- 
-       <img class="passaro" src="img/passaro.png" alt="passaro">
-        <div class="par-de-barreiras">
-            <div class="barreira">
-                <div class="corpo"> </div>
-                <div class="borda"></div>
-            </div>
-            <div class="barreira">
-                <div class="borda"> </div>
-                <div class="corpo"></div>
-            </div>
+        <div class="btnConfig">
+            <a href="forms.html"><img src="img/config.png" alt="icone de configurações"/></a>
         </div>
-        <div class="progresso"> 10 </div>   -->
+
+        <!-- tela de game-over -->
+        <section class="telaGame-Over" id="GameOver" style="display: none">
+            <div class="areaGame-Over">
+                <h1>Game Over</h1>
+                <h3 resultPontos></h3>
+                <a onclick="window.location.reload()">Jogar de novo!</a>
+            </div>
+        </section>
     </div>
 
+    
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/flappy.js"></script>
 </body>
 

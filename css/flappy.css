@@ -27,7 +27,7 @@ body {
 }
 
 /* -------------------------------------------------------------- */
-.conteudo, .mainConfig, .radio-button {
+.conteudo, .mainConfig, .radio-button, .telaGame-Over, .areaGame-Over{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -69,6 +69,17 @@ body {
     justify-content: flex-start;
     flex-direction: row;
     padding: 10px 0;
+}
+.areaGame-Over{
+    width: 500px;
+    height: 300px;
+    color: #000;
+    border-radius: 10px;
+    border: 2px solid #f4b312;
+    background: #dcd68a;
+}
+.telaGame-Over a{
+    cursor: pointer;
 }
 /* -------------------------------------------------------------- */
 
