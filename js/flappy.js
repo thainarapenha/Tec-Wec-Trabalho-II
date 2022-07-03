@@ -171,15 +171,14 @@ function colidiu(passaro, barreiras) {
  function FlappyBird() {
     let pontos = 0
 
-    // if(cenario === 'diurno'){
-    //     console.log("entrou no cenario dia")
-    //     areaDoJogo.style.backgroundColor = 'dodgerblue';
-    // }else{
-    //     console.log("entrou no cenario noite")
-    //     areaDoJogo.style.backgroundColor = 'gray';
-    // }
-
+    // alterando cenário do jogo
     const areaDoJogo = document.querySelector('[wm-flappy]')
+    if(cenario === 'diurno'){
+        areaDoJogo.style.backgroundImage="url(img/cenadioDia.png)";
+    }else{
+        areaDoJogo.style.backgroundImage="url(img/cenadioNoite.png)";
+    }
+
     const altura = areaDoJogo.clientHeight
     const largura = areaDoJogo.clientWidth
 
