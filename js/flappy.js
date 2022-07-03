@@ -12,22 +12,26 @@ const velocidadePersonagem = urlParams.get('opcao-veloPersonagem');
 const pontuacao = urlParams.get('opcao-pontuacao');
 
 console.table(
-    "nome", nome, 
-    "cenario", cenario, 
-    "intervalo Canos", intervaloCanos, 
-    "dist canos", distanciaCanos, 
-    "valo canos", velocidadeJogo, 
-    "personagem", personagem, 
-    "tipo de jogo", tipoJogo, 
-    "veloc personagem", velocidadePersonagem, 
-    "pontuação", pontuacao
+    "nome:", nome, 
+    "cenario:", cenario, 
+    "intervalo Canos:", intervaloCanos, 
+    "dist canos:", distanciaCanos, 
+    "valo canos:", velocidadeJogo, 
+    "personagem:", personagem, 
+    "tipo de jogo:", tipoJogo, 
+    "veloc personagem:", velocidadePersonagem, 
+    "pontuação:", pontuacao
 );
+
+/*  -------------------------------------------------------------------------------------------  */
 
 function novoElemento(tagName, className) {
     const elemento = document.createElement(tagName)
     elemento.className = className
     return elemento
 }
+
+/*  -------------------------------------------------------------------------------------------  */
 
 function Barreira(reversa = false) {
     this.elemento = novoElemento('div', 'barreira')
@@ -131,7 +135,6 @@ function Passaro(alturaJogo) {
 /*  -------------------------------------------------------------------------------------------  */
 
  function Progresso() {
-
     this.elemento = novoElemento('span', 'progresso')
     this.atualizarPontos = pontos => {
         this.elemento.innerHTML = pontos
@@ -183,7 +186,7 @@ function colidiu(passaro, barreiras) {
     const largura = areaDoJogo.clientWidth
 
     const progresso = new Progresso()
-    const barreiras = new Barreiras(altura, largura, 200, 400,
+    const barreiras = new Barreiras(altura, largura, parseInt(intervaloCanos), parseInt(distanciaCanos),
         () => progresso.atualizarPontos(++pontos))
 
     const passaro = new Passaro(altura)
