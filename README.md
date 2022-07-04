@@ -7,6 +7,9 @@ para ser usada no jogo em questão.
 
 ![conf](https://user-images.githubusercontent.com/43799802/177064336-9ef8e806-ecaf-47fd-965e-576c2dbf1178.PNG)
 
+## GitHub Pages;
+O projeto jogo pode ser acessado no GitHub Pages: [Flappy Bird](https://thainarapenha.github.io/Tec-Wec-Trabalho-II/)
+
 # Requisitos;
 As configurações escolhidas no início do jogo serão válidas para o jogo. O usuário poderá escolher:
 - Cenário do jogo (Dia ou Noite);
