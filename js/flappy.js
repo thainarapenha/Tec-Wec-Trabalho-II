@@ -139,7 +139,6 @@ function Passaro(alturaJogo) {
     this.atualizarPontos = pontos => {
         this.elemento.innerHTML = pontos
     }
-    
     this.atualizarPontos(0)
 }
 
@@ -174,23 +173,33 @@ function FlappyBird() {
 
     // adicionando valores de intervalo e distância de forma dinâmica
     const barreiras = new Barreiras(altura, largura, parseInt(intervaloCanos), parseInt(distanciaCanos),
-        () => progresso.atualizarPontos(++pontos))
+        () => progresso.atualizarPontos(pontos += parseInt(pontuacao)))
 
     function colidiu(passaro, barreiras) {
         let colidiu = false
-    
-        barreiras.pares.forEach(parDeBarreiras => {
-            if (!colidiu) {
+
+        // se jogo estiver apenas como TREINO, o passaro irá passar por tudo
+        if(tipoJogo === 'treino'){
+            if (colidiu) {
                 const superior = parDeBarreiras.superior.elemento
                 const inferior = parDeBarreiras.inferior.elemento
                 colidiu = estaoSobrepostos(passaro.elemento, superior) || estaoSobrepostos(passaro.elemento, inferior)
-            }else{
-                $("#GameOver").attr('style', '');
-                const resultado = document.querySelector('[resultPontos]')
-                console.log('nome: ', nome, 'pontos: ', pontos)
-                resultado.innerText = `${nome}, você finalizou com ${pontos} pontos`
             }
-        })
+        }else{// se jogo estiver como REAL, passaro poderá bater nas barreiras
+            barreiras.pares.forEach(parDeBarreiras => {
+                if (!colidiu) {// se não colidir com as barreiras, o jogo segue normalmente
+                    const superior = parDeBarreiras.superior.elemento
+                    const inferior = parDeBarreiras.inferior.elemento
+                    colidiu = estaoSobrepostos(passaro.elemento, superior) || estaoSobrepostos(passaro.elemento, inferior)
+                }else{// se não, receberá um game-over 
+                    $("#GameOver").attr('style', '');
+                    const resultado = document.querySelector('[resultPontos]')
+                    console.log('nome: ', nome, 'pontos: ', pontos)
+                    resultado.innerText = `${nome}, você finalizou com ${pontos} pontos`
+                }
+            })
+            
+        }
         return colidiu
     }
 
@@ -205,9 +214,9 @@ function FlappyBird() {
             barreiras.animar()
             passaro.animar()
 
-              if(colidiu(passaro,barreiras)){
-                 clearInterval(temporizador) 
-             } 
+            if(colidiu(passaro,barreiras)){
+                clearInterval(temporizador) 
+            } 
         }, velocidadeJogo)
     }
 }

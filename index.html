@@ -1,34 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/flappy.css">
+        <title>Flappy Bird</title>
+    </head>
+    <body>
+        <main class="mainConfig">
+            <img src="img/Flappy_Logo.png">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Flappy Bird</title>
-    <link rel="stylesheet" href="css/flappy.css">
-</head>
+            <section class="areaConfig">
+                <h1>Configurações do jogo</h1>
 
-<body class="conteudo">
-    <h1>Flappy Bird</h1>
-    <div wm-flappy id="Main">
-        <!-- icon de configurações do jogo -->
-        <div class="btnConfig">
-            <a href="forms.html"><img src="img/config.png" alt="icone de configurações"/></a>
-        </div>
-
-        <!-- tela de game-over -->
-        <section class="telaGame-Over" id="GameOver" style="display: none">
-            <div class="areaGame-Over">
-                <h1>Game Over</h1>
-                <h3 resultPontos></h3>
-                <a onclick="window.location.reload()">Jogar de novo!</a>
-            </div>
-        </section>
-    </div>
-
+                <form action="jogo.html" method="get" id="fomulario">
+                    <!-- nome jogador -->
+                    <div>
+                        <label for="nomeJogador"><strong>Nome do jogador: </strong></label>
+                        <input name="nomeJogador" value="Jogador(a)" id="nomeJog" >
+                    </div>
+                    
+                    <!-- cenário do jogo -->
+                    <div class="radio-button">
+                        <label><strong>Cenário do jogo: </strong></label>
     
+                        <div class="radio">
+                            <input type="radio" name="opcao-cena" id="diurno" value="diurno" checked/>
+                            <label for="opcao-cena">Diurno</label>
+                        </div>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-cena" id="noturno" value="noturno"/>
+                            <label for="opcao-cena">Noturno</label>
+                        </div>
+                    </div>
+    
+                    <!-- intervalo de canos -->
+                    <div class="radio-button">
+                        <label><strong>Intervalo entra abertura de canos: </strong></label>
+                        
+                        <div class="radio">
+                            <input type="radio" name="opcao-nivel" id="facil" value="400" checked/>
+                            <label for="opcao-nivel">Fácil</label>
+                        </div>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-nivel" id="medio" value="350"/>
+                            <label for="opcao-nivel">Médio</label>
+                        </div>
+                        
+                        <div class="radio">
+                            <input type="radio" name="opcao-nivel" id="dificil" value="300"/>
+                            <label for="opcao-nivel">Difícil</label>
+                        </div>
+                    </div>
+    
+                    <!-- distância de canos -->
+                    <div class="radio-button">
+                        <label><strong>Distância entre os canos: </strong></label>
+                        
+                        <div class="radio">
+                            <input type="radio" name="opcao-distancia" id="facil" value="400" checked/>
+                            <label for="opcao-distancia">Fácil</label>
+                        </div>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-distancia" id="medio" value="300"/>
+                            <label for="opcao-distancia">Médio</label>
+                        </div>
+                        
+                        <div class="radio">
+                            <input type="radio" name="opcao-distancia" id="dificil" value="200"/>
+                            <label for="opcao-distancia">Difícil</label>
+                        </div>
+                    </div>
+    
+                    <!-- velocidade do jogo -->
+                    <div class="velocidade">
+                        <label for="velocidade"><strong>Velocidade do jogo: </strong></label>
+                        
+                        <div >
+                            <input type="number" id="velocidade" name="velocidade" value="10" min="0" max="10" step="1">
+                       </div>
+                    </div>
+    
+                    <!-- escolha de personagem -->
+                    <div class="personagem">
+                        <label for="personagens"><strong>Personagem: </strong></label>
+    
+                        <select name="personagens" id="opPerson">
+                            <option selected >Bird Amarelo</option>
+                            <option >Bird Azul</option>
+                        </select>
+                    </div>
+    
+                    <!-- tipo de jogo -->
+                    <div class="radio-button">
+                        <label><strong>Tipo de jogo: </strong></label>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-tipo" id="treino" value="treino" checked/>
+                            <label for="opcao-tipo">Treino</label>
+                        </div>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-tipo" id="real" value="real"/>
+                            <label for="opcao-tipo">Real</label>
+                        </div>
+                    </div>
+    
+                    <!-- velocidade do personagem -->
+                    <div class="radio-button">
+                        <label><strong>Velocidade do personagem: </strong></label>
+                        
+                        <div class="radio">
+                            <input type="radio" name="opcao-veloPersonagem" id="facil" value="5" checked/>
+                            <label for="opcao-veloPersonagem">Fácil</label>
+                        </div>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-veloPersonagem" id="medio" value="8"/>
+                            <label for="opcao-veloPersonagem">Médio</label>
+                        </div>
+                        
+                        <div class="radio">
+                            <input type="radio" name="opcao-veloPersonagem" id="dificil" value="10"/>
+                            <label for="opcao-veloPersonagem">Difícil</label>
+                        </div>
+                    </div>
+                    
+                    <!-- pontuação -->
+                    <div class="radio-button">
+                        <label><strong>Pontuação: </strong></label>
+                        
+                        <div class="radio">
+                            <input type="radio" name="opcao-pontuacao" id="um" value="1" checked/>
+                            <label for="opcao-pontuacao">1</label>
+                        </div>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-pontuacao" id="dez" value="10"/>
+                            <label for="opcao-pontuacao">10</label>
+                        </div>
+    
+                        <div class="radio">
+                            <input type="radio" name="opcao-pontuacao" id="cem" value="100"/>
+                            <label for="opcao-pontuacao">100</label>
+                        </div>
+                    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="js/flappy.js"></script>
-</body>
-
+                    <button type="submit" value="submit" id="btnSubmit" onclick="init()">Salvar</button>
+                </form>
+            </section>
+        </main>
+    </body>
 </html>
